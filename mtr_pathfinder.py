@@ -1280,7 +1280,7 @@ def save_image(route_type: RouteType, every_route_time: list,
     time_img = Image.open(PNG_PATH + os.sep + 'time.png')
     for route_data in every_route_time:
         now_sta = (route_data[0], route_data[1])
-        route_img = Image.open(PNG_PATH + os.sep + f'{route_data[-1]}.png')
+        route_img = Image.open(PNG_PATH + os.sep + f'{route_data[8]}.png')
         if route_data[4][0] is True:
             terminus = ' '.join(route_data[4][1:])
         else:
@@ -1301,22 +1301,22 @@ def save_image(route_type: RouteType, every_route_time: list,
             pattern.append((ImagePattern.STATION, route_data[0],
                             route_data[2]))  # 车站
             if DETAIL and route_type == RouteType.WAITING and \
-                    route_data[-1] is not None:
+                    route_data[8] is not None:
                 pattern.append((ImagePattern.TEXT, f'等车 Wait {time2}'))  # 车站
             pattern.append((ImagePattern.THUMB_TEXT, route_img,
                             route_data[3]))  # 路线名
-            if route_data[-1] is not None:
+            if route_data[8] is not None:
                 # 正常
                 pattern.append((ImagePattern.GREY_TEXT, terminus))  # 方向
 
             if DETAIL and route_type == RouteType.WAITING and \
-                    route_data[-1] is not None:
+                    route_data[8] is not None:
                 pattern.append((ImagePattern.THUMB_TEXT, time_img,
                                 f'间隔 Interval {time3}'))
 
             prefix = ''
             colour = 'grey'
-            if DETAIL and route_data[-1] is not None:
+            if DETAIL and route_data[8] is not None:
                 prefix = '乘车 Ride '
                 colour = 'black'
             pattern.append((ImagePattern.THUMB_TEXT, time_img,
@@ -1327,19 +1327,19 @@ def save_image(route_type: RouteType, every_route_time: list,
             # 有缩进
             pattern.append((ImagePattern.THUMB_INTEND_TEXT, route_img,
                             route_data[3]))  # 路线名
-            if route_data[-1] is not None:
+            if route_data[8] is not None:
                 # 正常
                 pattern.append((ImagePattern.GREY_INTEND_TEXT,
                                 terminus))  # 方向
 
             if DETAIL and route_type == RouteType.WAITING and \
-                    route_data[-1] is not None:
+                    route_data[8] is not None:
                 pattern.append((ImagePattern.THUMB_INTEND_TEXT, time_img,
                                 f'间隔 Interval {time3}'))  # 用时
 
             prefix = ''
             colour = 'grey'
-            if DETAIL and route_data[-1] is not None:
+            if DETAIL and route_data[8] is not None:
                 prefix = '乘车 Ride '
                 colour = 'black'
             pattern.append((ImagePattern.THUMB_INTEND_TEXT, time_img,
