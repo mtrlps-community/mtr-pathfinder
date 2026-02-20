@@ -1173,12 +1173,15 @@ def process_path(G: nx.MultiDiGraph, path: list, shortest_distance: int,
                              route_name.split('||')[0]).strip()
                     route = route.replace('|', ' ')
                     next_id = None
+                    platform = ''
+                    
                     if MTR_VER == 3:
                         sta_id = z['stations'][-1].split('_')[0]
                         for q, x in enumerate(z['stations']):
                             if x.split('_')[0] == sta1_id and \
                                     q != len(z['stations']) - 1:
                                 next_id = z['stations'][q + 1].split('_')[0]
+                                platform = x.split('_')[1] if len(x.split('_')) > 1 else ''
                                 break
                     else:
                         sta_id = z['stations'][-1]['id']
@@ -1186,6 +1189,7 @@ def process_path(G: nx.MultiDiGraph, path: list, shortest_distance: int,
                             if x['id'] == sta1_id and \
                                     q != len(z['stations']) - 1:
                                 next_id = z['stations'][q + 1]['id']
+                                platform = x.get('name', '')
                                 break
 
                     if z['circular'] in ['cw', 'ccw']:
@@ -1236,7 +1240,7 @@ def process_path(G: nx.MultiDiGraph, path: list, shortest_distance: int,
                 sep_waiting = int(intervals[route_name])
 
             r = (sta1_name, sta2_name, color, route, terminus, duration,
-                 waiting, sep_waiting, train_type)
+                 waiting, sep_waiting, train_type, platform)
 
             if len(each_route_time) > 0:
                 old_r = each_route_time[-1]
