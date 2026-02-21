@@ -2,14 +2,14 @@ from mtr_pathfinder import main
 import hashlib
 
 # 出发、到达车站
-station1 = ""
-station2 = ""
+station1 = "Lake City"
+station2 = "Hana-Koshi Beach"
 
 # 地图设置
 # MTR模组版本（3/4），默认值为3
-MTR_VER: int = 3
+MTR_VER: int = 4
 # 在线线路图网址，结尾删除"/"
-LINK: str = ''
+LINK: str = 'https://letsplay.minecrafttransitrailway.com/system-map'
 # 从A站到B站，非出站换乘（越野）的最远步行距离，默认值为1500
 MAX_WILD_BLOCKS: int = 1500
 # 手动增加出站换乘
