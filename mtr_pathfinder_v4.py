@@ -820,9 +820,11 @@ def process_path(result: list[tuple], start: str, end: str,
         sta1_name = station_num_to_name(data, station_1).replace('|', ' ')
         sta2_name = station_num_to_name(data, station_2).replace('|', ' ')
         route_name = x[4][0]
+        platform = ''
         if route_name in data['routes']:
             z = data['routes'][route_name]
             route_name = data['routes'][route_name]['name']
+            original_route_name = route_name
             route = (z['number'] + ' ' + route_name.split('||')[0]).strip()
             route = route.replace('|', ' ')
             terminus_name: str = stations[x[4][1]]['name']
@@ -843,8 +845,18 @@ def process_path(result: list[tuple], start: str, end: str,
 
             color = hex(z['color']).lstrip('0x').rjust(6, '0')
             train_type = z['type']
+            
+            station_hex = hex(int(station_1))[2:]
+            for station_id, station_data in data['stations'].items():
+                if station_data['station'] == station_hex:
+                    for i, route_station in enumerate(z['stations']):
+                        if route_station['id'] == station_id:
+                            platform = route_station['name']
+                            break
+                    break
         else:
             color = '000000'
+            original_route_name = route_name
             route = route_name
             terminus = (route_name.split('，用时')[0], 'Walk')
             train_type = None
@@ -852,7 +864,7 @@ def process_path(result: list[tuple], start: str, end: str,
 
         color = '#' + color
         r = (sta1_name, sta2_name, color, route, terminus,
-             x[2], x[3], train_type, platform)
+             x[2], x[3], train_type, platform, original_route_name)
         every_route_time.append(r)
 
     return every_route_time

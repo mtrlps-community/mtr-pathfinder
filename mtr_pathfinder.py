@@ -1239,7 +1239,7 @@ def process_path(G: nx.MultiDiGraph, path: list, shortest_distance: int,
                 sep_waiting = int(intervals[route_name])
 
             r = (sta1_name, sta2_name, color, route, terminus, duration,
-                 waiting, sep_waiting, train_type, platform)
+                 waiting, sep_waiting, train_type, platform, z['name'])
 
             if len(each_route_time) > 0:
                 old_r = each_route_time[-1]
