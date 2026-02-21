@@ -652,7 +652,8 @@ def create_graph(data: list, IGNORED_LINES: list[str], ONLY_LINES: list[str],
     m = hashlib.md5()
     if cache is True and IGNORED_LINES == original_ignored_lines and \
             CALCULATE_BOAT is True and ONLY_LRT is False and \
-            AVOID_STATIONS == [] and route_type == RouteType.WAITING:
+            ONLY_LINES == [] and AVOID_STATIONS == [] and \
+            route_type == RouteType.WAITING:
         for s in original_ignored_lines:
             m.update(s.encode('utf-8'))
 
