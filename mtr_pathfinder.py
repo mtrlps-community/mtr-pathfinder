@@ -1593,7 +1593,7 @@ def main(station1: str, station2: str, LINK: str,
         route_type = RouteType.WAITING
 
     if G is None:
-        G = create_graph(data, IGNORED_LINES, CALCULATE_HIGH_SPEED,
+        G, _ = create_graph(data, IGNORED_LINES, CALCULATE_HIGH_SPEED,
                                      CALCULATE_BOAT, CALCULATE_WALKING_WILD, ONLY_LRT,
                                      AVOID_STATIONS, route_type, ORIGINAL_IGNORED_LINES,
                                      INTERVAL_PATH, version1, version2, LOCAL_FILE_PATH,
