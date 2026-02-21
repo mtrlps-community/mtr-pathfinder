@@ -1259,7 +1259,6 @@ def process_path(G: nx.MultiDiGraph, path: list, shortest_distance: int,
     if station_names[-1] != end_:
         station_names += end_
 
-    print(every_route_time)
     return ' ->\n'.join(station_names), shortest_distance, \
         waiting_time, shortest_distance - waiting_time, every_route_time
 
