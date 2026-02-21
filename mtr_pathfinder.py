@@ -995,8 +995,12 @@ def create_graph(data: list, IGNORED_LINES: list[str], ONLY_LINES: list[str],
                 route_name = r[0]
                 platform = None
             else:
-                route_name = [x[0] for x in r[0]]
-                platform = [x[1] for x in r[0]]
+                if isinstance(r[0], tuple):
+                    route_name = r[0][0]
+                    platform = r[0][1]
+                else:
+                    route_name = [x[0] for x in r[0]]
+                    platform = [x[1] for x in r[0]]
 
             duration = r[1]
             waiting_time = r[2]
