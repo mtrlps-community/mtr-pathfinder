@@ -526,7 +526,8 @@ def gen_timetable(data: dict, IGNORED_LINES: list[str], ONLY_LINES: list[str],
     m = hashlib.md5()
     if IGNORED_LINES == original_ignored_lines and \
             CALCULATE_BOAT is True and ONLY_LRT is False and \
-            AVOID_STATIONS == [] and route_type == RouteType.REAL_TIME:
+            AVOID_STATIONS == [] and ONLY_LINES == [] and \
+            route_type == RouteType.REAL_TIME:
         for s in original_ignored_lines:
             m.update(s.encode('utf-8'))
 
