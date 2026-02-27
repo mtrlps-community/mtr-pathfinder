@@ -2,14 +2,14 @@ from mtr_pathfinder import main
 import hashlib
 
 # 出发、到达车站
-station1 = ""
-station2 = ""
+station1 = "sundogs"
+station2 = "上米内"
 
 # 地图设置
 # MTR模组版本（3/4），默认值为3
-MTR_VER: int = 3
+MTR_VER: int = 4
 # 在线线路图网址，结尾删除"/"
-LINK: str = ''
+LINK: str = 'https://letsplay.minecrafttransitrailway.com/system-map'
 # 从A站到B站，非出站换乘（越野）的最远步行距离，默认值为1500
 MAX_WILD_BLOCKS: int = 1500
 # 手动增加出站换乘
@@ -26,7 +26,7 @@ ORIGINAL_IGNORED_LINES: list = []
 
 link_hash = hashlib.md5(LINK.encode('utf-8')).hexdigest()
 # 文件设置
-LOCAL_FILE_PATH = f'mtr-original-data-{link_hash}-mtr{MTR_VER}-v3.json'
+LOCAL_FILE_PATH = f'mtr-station-data-{link_hash}-mtr{MTR_VER}-v3.json'
 INTERVAL_PATH = f'mtr-route-interval-data-{link_hash}-mtr{MTR_VER}-v3.json'
 BASE_PATH = 'mtr_pathfinder_data'
 PNG_PATH = 'mtr_pathfinder_data'
@@ -41,7 +41,7 @@ GEN_ROUTE_INTERVAL: bool = False
 IGNORED_LINES: list = []
 # 仅使用指定路线
 # "路线名称1, 路线名称2, ..."
-ONLY_LINES: list = []
+ONLY_ROUTES: list = []
 # 避开的车站
 AVOID_STATIONS: list = []
 # 允许高铁，默认值为True
@@ -58,4 +58,4 @@ IN_THEORY: bool = False
 # 输出的图片中是否显示详细信息，默认值为False
 DETAIL: bool = False
 
-main(station1, station2, LINK, LOCAL_FILE_PATH, INTERVAL_PATH, BASE_PATH, PNG_PATH, MAX_WILD_BLOCKS, TRANSFER_ADDITION, WILD_ADDITION, STATION_TABLE, ORIGINAL_IGNORED_LINES, UPDATE_DATA, GEN_ROUTE_INTERVAL, IGNORED_LINES, ONLY_LINES, AVOID_STATIONS, CALCULATE_HIGH_SPEED, CALCULATE_BOAT, CALCULATE_WALKING_WILD, ONLY_LRT, IN_THEORY, DETAIL, MTR_VER, show=True)
+main(station1, station2, LINK, LOCAL_FILE_PATH, INTERVAL_PATH, BASE_PATH, PNG_PATH, MAX_WILD_BLOCKS, TRANSFER_ADDITION, WILD_ADDITION, STATION_TABLE, ORIGINAL_IGNORED_LINES, UPDATE_DATA, GEN_ROUTE_INTERVAL, IGNORED_LINES, ONLY_ROUTES, AVOID_STATIONS, CALCULATE_HIGH_SPEED, CALCULATE_BOAT, CALCULATE_WALKING_WILD, ONLY_LRT, IN_THEORY, DETAIL, MTR_VER, show=True)
