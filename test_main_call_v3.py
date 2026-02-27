@@ -2,8 +2,8 @@ from mtr_pathfinder import main
 import hashlib
 
 # 出发、到达车站
-station1 = "Lake City"
-station2 = "Hana-Koshi Beach"
+station1 = "sundogs"
+station2 = "上米内"
 
 # 地图设置
 # MTR模组版本（3/4），默认值为3

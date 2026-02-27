@@ -852,7 +852,7 @@ def process_path(result: list[tuple], start: str, end: str,
 
         color = '#' + color
         r = (sta1_name, sta2_name, color, route, terminus,
-             x[2], x[3], train_type, platform)
+             x[2], x[3], train_type, platform, route_name)
         every_route_time.append(r)
 
     return every_route_time
@@ -1185,7 +1185,7 @@ def run():
 
     # 文件设置
     link_hash = hashlib.md5(LINK.encode('utf-8')).hexdigest()
-    LOCAL_FILE_PATH = f'mtr-station-data-{link_hash}-mtr4-v4.json'
+    LOCAL_FILE_PATH = f'mtr-original-data-{link_hash}-mtr4-v4.json'
     DEP_PATH = f'mtr-route-departure-{link_hash}-mtr4-v4.json'
     BASE_PATH = 'mtr_pathfinder_data'
     PNG_PATH = 'mtr_pathfinder_data'
