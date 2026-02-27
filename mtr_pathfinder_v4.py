@@ -779,10 +779,10 @@ def process_path(result: list[tuple], start: str, end: str,
     route_new = []
     low_i = MAX_INT
     for i in range(len(result) - 1, -1, -1):
+        new_leg = result[i]
         if i >= low_i:
             continue
 
-        new_leg = result[i]
         if len(new_leg) < 6:
             route_new.append(new_leg)
             continue
@@ -796,7 +796,7 @@ def process_path(result: list[tuple], start: str, end: str,
 
             if trip[trip_index] >= old_leg[2]:
                 new_leg = [trip_index, new_leg[1], trip[trip_index],
-                           new_leg[3], old_leg[4], new_leg[5]]
+                           new_leg[3], new_leg[4], new_leg[5]]
                 low_i = j
 
         route_new.append(new_leg)
